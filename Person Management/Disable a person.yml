@@ -1,0 +1,24 @@
+info:
+  name: Disable a person
+  type: http
+  seq: 7
+
+http:
+  method: DELETE
+  url: "{{url}}/person/{{id}}"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: id
+      value: "3"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

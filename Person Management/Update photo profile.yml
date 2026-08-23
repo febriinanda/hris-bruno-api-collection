@@ -1,0 +1,32 @@
+info:
+  name: Update photo profile
+  type: http
+  seq: 6
+
+http:
+  method: PATCH
+  url: "{{url}}/person/{{id}}/photo/profile"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        type: file
+        value:
+          - C:\Users\alvin\OneDrive\Desktop\pngtree-rich-rich-man-image_2252469.jpg
+        contentType: image/jpeg
+  auth: inherit
+
+runtime:
+  variables:
+    - name: id
+      value: "7"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

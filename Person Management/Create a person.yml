@@ -1,0 +1,49 @@
+info:
+  name: Create a person
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/person"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: json
+    data: |-
+      {
+        "name": "{{$randomFullName}}",
+        "gender": "{{gender}}",
+        "birthDate": "{{birthDate}}"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: gender
+      value: female
+    - name: birthDate
+      value: ""
+  scripts:
+    - type: before-request
+      code: |-
+        const start = new Date("1980-01-01");
+        const end = new Date("2000-12-31");
+
+        const randomTime =
+          start.getTime() +
+          Math.random() * (end.getTime() - start.getTime());
+
+        const randomDate = new Date(randomTime);
+
+        const birthDate = randomDate.toISOString().split("T")[0];
+
+        bru.setVar("birthDate", birthDate);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,34 @@
+info:
+  name: Update a person's gender
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{url}}/person/{{id}}/gender"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: json
+    data: |-
+      {
+        "name": null,
+        "gender": "{{gender}}",
+        "birthDate": null
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: id
+      value: "7"
+    - name: gender
+      value: male
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
