@@ -1,0 +1,36 @@
+info:
+  name: Regsiter an employee
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/employee"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: json
+    data: |-
+      {
+        "person": {
+          "id":{{personId}}
+        },
+        "status": "{{status}}",
+        "joinDate": "{{$randomDateFuture}}"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: personId
+      value: "5"
+    - name: status
+      value: PERMANENT
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

@@ -1,0 +1,21 @@
+info:
+  name: Assign Registration Number
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{url}}/employee/{{id}}/registration/number"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: id
+      value: "3"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
