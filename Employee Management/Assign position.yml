@@ -1,11 +1,11 @@
 info:
-  name: Assign registration number
+  name: Assign position
   type: http
-  seq: 3
+  seq: 4
 
 http:
-  method: PATCH
-  url: "{{url}}/employee/{{id}}/registration/number"
+  method: POST
+  url: "{{url}}/employee/{{id}}/assign"
   headers:
     - name: Authorization
       value: "{{access_token}}"
@@ -13,7 +13,11 @@ http:
     type: json
     data: |-
       {
-        "number":"2026080011"
+        "position":{
+          "id":1
+        },
+        "startDate":"{{$randomDateFuture}}",
+        "endDate":null
       }
   auth: inherit
 

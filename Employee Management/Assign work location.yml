@@ -1,11 +1,11 @@
 info:
-  name: Regsiter an employee
+  name: Assign work location
   type: http
-  seq: 1
+  seq: 5
 
 http:
   method: POST
-  url: "{{url}}/employee"
+  url: "{{url}}/employee/{{id}}/work/site"
   headers:
     - name: Authorization
       value: "{{access_token}}"
@@ -13,20 +13,18 @@ http:
     type: json
     data: |-
       {
-        "person": {
-          "id":{{personId}}
+        "office":{
+          "id":4
         },
-        "status": "{{status}}",
-        "joinDate": "{{$randomDateFuture}}"
+        "startDate":"{{$randomDateFuture}}",
+        "endDate":null
       }
   auth: inherit
 
 runtime:
   variables:
-    - name: personId
-      value: "5"
-    - name: status
-      value: PERMANENT
+    - name: id
+      value: "3"
 
 settings:
   encodeUrl: true

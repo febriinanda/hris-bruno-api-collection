@@ -1,11 +1,11 @@
 info:
-  name: Assign registration number
+  name: Register an employee
   type: http
-  seq: 3
+  seq: 1
 
 http:
-  method: PATCH
-  url: "{{url}}/employee/{{id}}/registration/number"
+  method: POST
+  url: "{{url}}/employee"
   headers:
     - name: Authorization
       value: "{{access_token}}"
@@ -13,14 +13,20 @@ http:
     type: json
     data: |-
       {
-        "number":"2026080011"
+        "person": {
+          "id":{{personId}}
+        },
+        "status": "{{status}}",
+        "joinDate": "{{$randomDateFuture}}"
       }
   auth: inherit
 
 runtime:
   variables:
-    - name: id
-      value: "3"
+    - name: personId
+      value: "5"
+    - name: status
+      value: PERMANENT
 
 settings:
   encodeUrl: true
