@@ -1,0 +1,25 @@
+info:
+  name: Create a company
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{url}}/company"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: json
+    data: |-
+      {
+        "name":"{{$randomCompanyName}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

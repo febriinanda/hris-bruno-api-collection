@@ -1,0 +1,30 @@
+info:
+  name: Disable a company
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{url}}/company/{{id}}"
+  headers:
+    - name: Authorization
+      value: "{{access_token}}"
+  body:
+    type: json
+    data: |-
+      {
+        "name":"{{$randomCompanyName}}"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: id
+      value: "3"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
