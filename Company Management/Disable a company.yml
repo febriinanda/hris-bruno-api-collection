@@ -4,17 +4,14 @@ info:
   seq: 4
 
 http:
-  method: PUT
+  method: DELETE
   url: "{{url}}/company/{{id}}"
   headers:
     - name: Authorization
       value: "{{access_token}}"
   body:
     type: json
-    data: |-
-      {
-        "name":"{{$randomCompanyName}}"
-      }
+    data: ""
   auth: inherit
 
 runtime:
